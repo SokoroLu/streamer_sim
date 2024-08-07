@@ -35,7 +35,7 @@
 .table {
   width: 400px;
   position: absolute;
-  top: 340px;
+  top: 500px;
   left: calc(50vw - 200px);
   z-index: 1;
 }
@@ -86,5 +86,8 @@
   z-index: 2;
   border: none;
   background-size: cover;
-  background-image: url("https://cdn.discordapp.com/attachments/1263205475894427768/1270068324570763345/Untitled438_20240805131501.png?ex=66b3ac4d&is=66b25acd&hm=6ba66fe5caeb88fcf63e2e41441597c11ceede2ef17e198d24661e0e546e9175&");
+}
+
+#monButton {
+  /**background-image: url("https://cdn.discordapp.com/attachments/1263205475894427768/1270068324570763345/Untitled438_20240805131501.png?ex=66b3ac4d&is=66b25acd&hm=6ba66fe5caeb88fcf63e2e41441597c11ceede2ef17e198d24661e0e546e9175&")*/
 }

@@ -16,34 +16,23 @@ export default function App() {
   const [currentUpgrade, setCurrentUpgrade] = useState(0);
 
   const handlePurchase = (index) => {
-    if (upgrades[index].purchased) {
-      return; // Do nothing if already purchased
-    }
-
-    if (count >= upgrades[index].cost && currentUpgrade === index) {
-      setCount(count - upgrades[index].cost);
-      setCurrentUpgrade(currentUpgrade + 1);
-      const newUpgrades = [...upgrades];
-      newUpgrades[index].purchased = true;
-      setUpgrades(newUpgrades);
-
-      // Apply upgrade effects
-      if (upgrades[index].name === "New Computer") {
-        setClickValue((prevClickValue) => prevClickValue * 2); // Double the click value
-      } else if (upgrades[index].name === "Keyboard and Mouse") {
-        setClickValue((prevClickValue) => prevClickValue * 2); // Quadruple the click value
-      } else if (upgrades[index].name === "Golden Computer") {
-        setClickRate((prevClickRate) => prevClickRate + 1); // Add 1 click per second
-      } else if (upgrades[index].name === "Diamond Computer") {
-        setClickRate((prevClickRate) => prevClickRate + 4); // Add 5 clicks per second
-      }
-    } else {
+ 
+    if(index <= monitor){
       alert(
         "You don't have enough money to make this purchase or you need to unlock the previous upgrade"
       );
+      return
     }
-  };
+    
 
+    if (count >= upgrades[index].cost ) {
+      setCount(count - upgrades[index].cost);
+      setMonitor(index);
+      setClickValue(upgrades[index].cash_per_click)
+      setClickRate(upgrades[index].cash_per_sec)
+      
+  };
+  }
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prevCount) => prevCount + clickRate);
@@ -57,16 +46,15 @@ export default function App() {
       <Appbar />
       <MoneyBar count={count} />
       <Monitor
-        monitor={monitor}
         count={count}
-        setCount={setCount}
-        clickValue={clickValue}
+        setCount={setCount} 
+        monitor={monitor}
       />
       <ShopButtons
-        setMonitor={setMonitor}
-        upgrades={upgrades}
+        currentMonitor ={monitor}
         handlePurchase={handlePurchase}
       />
     </>
   );
+
 }

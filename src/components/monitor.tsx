@@ -1,17 +1,19 @@
 import React from "react";
 import monitors from "../monitors";
 
-const Monitor = ({ count, setCount, clickValue, monitor }) => {
+const Monitor = ({ count, setCount, monitor }) => {
+  const backgrounds = ['red', 'green', 'blue', 'pink', 'black'];
   const currentMonitor = monitors[monitor];
   const handleClick = () => {
-    setCount((prevCount) => prevCount + clickValue);
+    setCount(count + currentMonitor.cash_per_click);
   };
 
   return (
     <button
       onClick={handleClick}
       className="monitor"
-      style={{ backgroundImage: monitor.image }}
+      //style={{'background': backgrounds[monitor]}}
+      style={{'background-image': `url(${currentMonitor.image})`}}
     ></button>
   );
 };
